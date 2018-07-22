@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:900');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Slab');
+
+// Brand
+
+$brand-primary:                                 #333;
+$brand-secondary:                               #78909C;
+$brand-teritiary:                               #008060;
+
+// Colors
+
+$dark-gray:                                     #333;
+$light-gray:                                    lighten($dark-gray, 20);
+$very-light-gray:                               #E3E5E6;
+$danger:                                        #d44950;
+$default-icon-color:                            $brand-primary;
+
+// Font
+
+$primary-font:                                  'Roboto Condensed', sans-serif;
+$secondary-font:                                'Roboto', sans-serif;
+$tertiary-font:                                 'Roboto Slab', serif;
+
+$base-font-family:                              $primary-font;
+$base-heading-font-family:                      $primary-font;
+$base-blockquote-font-family:                   $primary-font;
+
+$base-heading-font-family-alternate:            $secondary-font;
+
+$base-font-color:                               #444 !default;
+
+$small-font-size:                               0.7rem;
+
+// Headings
+
+$base-header-weight:                            400 !default;
+$base-bold-header-weight:                       700 !default;
+$base-bold-alternate-weight:                    900 !default;
+
+$base-h1-font-weight:                           $base-header-weight !default;
+$base-h1-color:                                 $base-font-color !default;
+$base-h2-font-weight:                           $base-header-weight !default;
+$base-h2-color:                                 $base-font-color !default;
+$base-h3-font-weight:                           $base-header-weight !default;
+$base-h3-color:                                 $base-font-color !default;
+$base-h4-font-weight:                           $base-bold-alternate-weight !default;
+$base-h4-color:                                 $base-font-color !default;
+$base-h5-font-weight:                           $base-header-weight !default;
+$base-h5-color:                                 $base-font-color !default;
+$base-h6-font-weight:                           $base-header-weight !default;
+$base-h6-color:                                 $base-font-color !default;
+
+// Links
+
+$base-link-color:                               $brand-teritiary !default;
+$base-link-hover-color:                         darken($base-link-color, 20%);
+
+// Layout
+
+$container-xl:                                  960px;
+$header-height:                                 70px;
+$responsive-header-height:                      35px;
+$centered-menu-header-height:                   $header-height;
+$centered-menu-header-height-responsive:        $responsive-header-height;

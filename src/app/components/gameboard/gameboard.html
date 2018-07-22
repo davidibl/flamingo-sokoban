@@ -1,0 +1,26 @@
+<div>
+    <ng-container *ngIf="levelState$ | async as levelState">
+        <div class="flex space-between gameboard mb10">
+            <xn-timer></xn-timer>
+            <span>{{'label.level' | translate | async}}: {{level$ | async}}</span>
+            <span>{{'label.moves' | translate | async}}: {{levelState.moveCount}}</span>
+        </div>
+        <div class="flex gameboard mb10"
+            (swipeleft)="move('ArrowLeft')"
+            (swiperight)="move('ArrowRight')"
+            (swipeup)="move('ArrowUp')"
+            (swipedown)="move('ArrowDown')">
+            <ng-container *ngIf="gameboard$ | async as gameboard">
+                <div *ngFor="let fieldLine of gameboard" class="flex line">
+                    <div *ngFor="let field of fieldLine" class="field">
+                        <div class="fieldcontent {{field.typ}}"></div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <div class="gameboard space-between flex mb20">
+            <button (click)="restartLevel()" class="button">{{'action.restartlevel' | translate | async}}</button>
+            <button (click)="restartGame()" class="button">{{'action.restartgame' | translate | async}}</button>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,44 @@
+<xn-centered-menu-header [brandName]="brandName" [brandLogoSource]="brandLogoSource">
+    <li><a href="https://github.com/davidibl/flamingo-sokoban"><img src="assets/github.png" /></a></li>
+</xn-centered-menu-header>
+
+<div class="main-content container">
+    <router-outlet></router-outlet>
+</div>
+
+<ng-container *ngIf="currentLevelState$ | async as levelState">
+    <xn-dialog [open]="levelState.won">
+        <h1>{{'label.done' | translate | async}}</h1>
+        <p *ngIf="!levelState.lastLevel">
+            {{'label.greeting_level_done' | translate:null:{moveCount: levelState.moveCount, level: currentLevel$ | async} | async}}
+        </p>
+        <p *ngIf="levelState.lastLevel">
+            {{'label.greeting_game_done' | translate:null:{moveCount: levelState.moveCount} | async}}
+        </p>
+        <button *ngIf="!levelState.lastLevel" class="button" (click)="nextLevel()">{{'action.nextlevel' | translate | async}}</button>
+        <button *ngIf="levelState.lastLevel" class="button" (click)="restartGame()">{{'action.try_game_again' | translate | async}}</button>
+    </xn-dialog>
+</ng-container>
+
+<ng-container *ngIf="localProfile$ | async as localProfile">
+    <xn-dialog [open]="!localProfile.firstTime">
+        <h1>{{'label.tutorial' | translate | async}}</h1>
+        <div class="flex">
+            <p>
+                {{'label.tutorial_flamingo' | translate | async}}
+            </p>
+            <div class="no-shrink tutorial-image flamingo">
+            </div>
+        </div>
+        <div class="flex">
+            <p>
+                {{'label.tutorial_game' | translate | async}}
+            </p>
+            <div class="no-shrink tutorial-image contract">
+            </div>
+            <div class="no-shrink tutorial-image grave">
+            </div>
+        </div>
+        <button class="button" (click)="acknowledgeTutorial()">{{'action.acknowledgetutorial' | translate | async}}</button>
+    </xn-dialog>
+</ng-container>

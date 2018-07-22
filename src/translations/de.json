@@ -1,0 +1,20 @@
+{
+    "label": {
+        "done": "Geschafft",
+        "greeting_level_done": "Wow, in nur {moveCount} Zügen Level {level} geschafft! Großartige Leistung. Du darfst das nächste spielen.",
+        "greeting_game_done": "Ohje... Das war's auch schon. Du hast das letzte Level nach nur {moveCount} Zügen geschafft.",
+        "level": "Level",
+        "moves": "Züge",
+        "tutorial": "Anleitung",
+        "tutorial_flamingo": "Der Held dieses Spiels, ein Flamingo, muss in einem Labyrinth für Gerechtigkeit sorgen. Sein Ziel ist es alle Gräber mit Sterbegeld zu versorgen.",
+        "tutorial_game": "Also Verträge auf Gräber schieben... Das war's. Mehr ist nicht zu tun.",
+        "pagetitle": "Soko-Flamingo: grave-edition"
+    },
+    "action": {
+        "acknowledgetutorial": "Alles kapiert, los geht's",
+        "restartgame": "Von vorne beginnen",
+        "restartlevel": "Level neu starten",
+        "nextlevel": "Nächstes Level",
+        "try_game_again": "Gleich nochmal"
+    }
+}

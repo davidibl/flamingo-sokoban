@@ -1,0 +1,20 @@
+{
+    "label": {
+        "done": "Done",
+        "greeting_level_done": "Wow, you finished level {level} in just {moveCount} moves! Great performance. You are allowed to play the next level, now.",
+        "greeting_game_done": "Sadly... That's it. You even needed just {moveCount} moves to finish the last level.",
+        "level": "level",
+        "moves": "moves",
+        "tutorial": "tutorial",
+        "tutorial_flamingo": "The hero of this game, a little flamingo, has to ensure justice. His goal is to care for death grants for every grave within a labyrinth.",
+        "tutorial_game": "So, just move the contracts on the graves... That's it. Nothing else to do.",
+        "pagetitle": "Soko-Flamingo: grave-edition"
+    },
+    "action": {
+        "acknowledgetutorial": "Alright, let's start",
+        "restartgame": "Try from the beginning",
+        "restartlevel": "restart level",
+        "nextlevel": "next level",
+        "try_game_again": "try again"
+    }
+}

@@ -1,0 +1,88 @@
+$centered-menu-header-height:                       45px;
+$centered-menu-header-height-responsive:            45px;
+$centered-menu-header-margin-bottom:                0;
+$centered-menu-header-background-color:             #f3e6ec;
+
+$brand-bar-height:                                  25px;
+$brand-name-font:                                   $base-heading-font-family-alternate;
+
+$menu-item-margin:                                  20px;
+$menu-item-color:                                   $brand-primary;
+$menu-item-hover-color:                             lighten($menu-item-color, 30%);
+
+xn-centered-menu-header {
+
+    position:                                       fixed;
+    width:                                          100%;
+    top:                                            0;
+    left:                                           0;
+    z-index:                                        1000;
+    background-color:                               $centered-menu-header-background-color;
+    @include shadow(0px 15px 25px -15px rgba(0, 0, 0, 0.5));
+
+    .header {
+        margin-bottom:                              $centered-menu-header-margin-bottom;
+        height:                                     $centered-menu-header-height;
+
+        @media (max-width: $breakpoint-m - 1) {
+            height:                                 $centered-menu-header-height-responsive;
+        }
+    }
+
+    .nav {
+        display:                                    flex;
+        flex-direction:                             row;
+        flex-wrap:                                  wrap;
+        justify-content:                            space-between;
+        align-items: center;
+        height:                                     100%;
+        padding:                                    5px 5px 5px 5px;
+        position:                                   relative;
+
+        .brand-bar {
+            height:                                 $brand-bar-height;
+        }
+
+        .brand-name {
+            @extend .left;
+
+            font:                                   $brand-name-font;
+            margin-top:                             -2px;
+        }
+
+        ul {
+            bottom:                                 0;
+            padding:                                0;
+        }
+
+        li {
+            @extend .left;
+
+            list-style:                             none;
+            height:                                 $brand-bar-height;
+            margin-right:                           $menu-item-margin;
+            cursor:                                 pointer;
+
+            a {
+                @extend h4;
+
+                color:                              $menu-item-color;
+
+                &:hover {
+                    color:                          $menu-item-hover-color;
+                }
+
+                &.active {
+                    color:                          $menu-item-hover-color;
+                }
+            }
+            img {
+                height:                                 $brand-bar-height;
+            }
+        }
+
+        li:last-of-type {
+            margin-right:                           0px;
+        }
+    }
+}

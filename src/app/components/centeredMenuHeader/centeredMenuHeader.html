@@ -1,0 +1,11 @@
+<div class="header">
+    <div class="nav container">
+        <div class="brand-bar">
+            <img class="full-height left" [src]="brandLogoSource" />
+            <h2 class="brand-name">{{brandName}}</h2>
+        </div>
+        <ul>
+            <ng-content select="li"></ng-content>
+        </ul>
+    </div>
+</div>
