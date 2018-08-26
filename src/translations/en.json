@@ -8,7 +8,8 @@
         "tutorial": "tutorial",
         "tutorial_flamingo": "The hero of this game, a little flamingo, has to ensure justice. His goal is to care for death grants for every grave within a labyrinth.",
         "tutorial_game": "So, just move the contracts on the graves... That's it. Nothing else to do.",
-        "pagetitle": "Soko-Flamingo: grave-edition"
+        "pagetitle": "Soko-Flamingo: grave-edition",
+        "replay": "Click here to replay what you did.."
     },
     "action": {
         "acknowledgetutorial": "Alright, let's start",

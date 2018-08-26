@@ -48,6 +48,10 @@ export class AppComponent implements OnInit {
         this._levelService.setLevel(1);
     }
 
+    public replay() {
+        this._gameService.replayLevel();
+    }
+
     public acknowledgeTutorial() {
         this._stateService.writeState('firstTime', false);
         this.getLocalProfile();

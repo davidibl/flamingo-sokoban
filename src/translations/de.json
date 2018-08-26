@@ -8,7 +8,8 @@
         "tutorial": "Anleitung",
         "tutorial_flamingo": "Der Held dieses Spiels, ein Flamingo, muss in einem Labyrinth für Gerechtigkeit sorgen. Sein Ziel ist es alle Gräber mit Sterbegeld zu versorgen.",
         "tutorial_game": "Also Verträge auf Gräber schieben... Das war's. Mehr ist nicht zu tun.",
-        "pagetitle": "Soko-Flamingo: grave-edition"
+        "pagetitle": "Soko-Flamingo: grave-edition",
+        "replay": "Klicke hier um dir nochmal anzusehen wie du gespielt hast.."
     },
     "action": {
         "acknowledgetutorial": "Alles kapiert, los geht's",

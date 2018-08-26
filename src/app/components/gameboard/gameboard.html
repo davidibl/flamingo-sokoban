@@ -19,14 +19,16 @@
             </ng-container>
         </div>
         <div class="gameboard space-between flex mb20">
-            <button (click)="restartLevel()"
-                    class="button"
-                    [xnAnalytics]="{category: 'game-control', action: 'restart level', value: 'Level: ' + level$ | async}">
-                    {{'action.restartlevel' | translate | async}}</button>
-            <button (click)="restartGame()"
-                    class="button"
-                    [xnAnalytics]="{category: 'game-control', action: 'restart level', value: 'Level: ' + level$ | async}">
-                    {{'action.restartgame' | translate | async}}</button>
+            <ng-container *ngIf="level$ | async as level">
+                <button (click)="restartLevel()"
+                        class="button"
+                        [xnAnalytics]="{category: 'game-control', action: 'restart level', value: 'Level: ' + level}">
+                        {{'action.restartlevel' | translate | async}}</button>
+                <button (click)="restartGame()"
+                        class="button"
+                        [xnAnalytics]="{category: 'game-control', action: 'restart level', value: 'Level: ' + level}">
+                        {{'action.restartgame' | translate | async}}</button>
+            </ng-container>
         </div>
     </ng-container>
 </div>

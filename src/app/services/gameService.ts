@@ -4,6 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { Field } from '../model/field';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/observable/interval';
 import { Fieldtype } from '../model/fieldtyp';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LevelState } from '../model/levelState';
@@ -17,10 +20,10 @@ export class GameService {
     private static readonly LEVEL_COUNT = 12;
     private static readonly START_STATE = new LevelState(0, false);
 
-    private _gameCache: { [key: number]: ReplaySubject<Field[][]> } = {};
     private _levelCache = new ReplaySubject<Field[][]>(1);
     private _levelState = new BehaviorSubject<LevelState>(GameService.START_STATE);
     private _currentLevel: number;
+    private _currentCommandStore: string[];
 
     public constructor(private _httpClient: HttpClient,
                        private _levelService: LevelService) {
@@ -45,15 +48,30 @@ export class GameService {
         if (!Command[command]) {
             return false;
         }
+        this._currentCommandStore.push(command);
         this.createNewGameState(Command[command]);
         return true;
+    }
+
+    public replayLevel() {
+        this.loadLevel(this._currentLevel, true);
+        this._levelCache
+            .filter(level => !!level)
+            .take(1)
+            .subscribe(level => {
+                Observable
+                    .interval(200)
+                    .map(i => this._currentCommandStore[i])
+                    .take(this._currentCommandStore.length)
+                    .subscribe(command => this.move(command));
+            });
     }
 
     private createNewGameState(vector: (position: IPosition, value: number) => IPosition) {
         this._levelCache
             .take(1)
             .map(gameboard => this.nextState(gameboard, vector))
-            .subscribe(gameboard => this._gameCache[`${this._currentLevel}`].next(gameboard));
+            .subscribe(gameboard => this._levelCache.next(gameboard));
     }
 
     private nextState(gameboard: Field[][], vector: (position: IPosition, value: number) => IPosition) {
@@ -125,10 +143,14 @@ export class GameService {
         }
     }
 
-    private loadLevel(level: number) {
+    private loadLevel(level: number, replay = false) {
         this._currentLevel = level;
-        this._gameCache[level] = new ReplaySubject<Field[][]>(1);
         this._levelState.next(GameService.START_STATE);
+        if (!replay) {
+            this._currentCommandStore = [];
+        } else {
+            this._levelCache.next(null);
+        }
         this._httpClient
             .get(`/assets/level/level${level}.txt`, {responseType: 'text'})
             .subscribe(felder => this._levelCache.next(this.createFields(felder)));

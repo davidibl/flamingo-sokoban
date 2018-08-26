@@ -16,6 +16,11 @@
         <p *ngIf="levelState.lastLevel">
             {{'label.greeting_game_done' | translate:null:{moveCount: levelState.moveCount} | async}}
         </p>
+        <p class="link-paragraph"
+           [xnAnalytics]="{category: 'game-control', action: 'Replay Level'}"
+           (click)="replay()">
+            {{'label.replay' | translate | async}}
+        </p>
         <button *ngIf="!levelState.lastLevel"
                 class="button"
                 (click)="nextLevel()"
