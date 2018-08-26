@@ -1,5 +1,6 @@
 <xn-centered-menu-header [brandName]="brandName" [brandLogoSource]="brandLogoSource">
-    <li><a href="https://github.com/davidibl/flamingo-sokoban"><img src="assets/github.png" /></a></li>
+    <li><a href="https://github.com/davidibl/flamingo-sokoban"
+        [xnAnalytics]="{category: 'link', action: 'Github'}"><img src="assets/github.png" /></a></li>
 </xn-centered-menu-header>
 
 <div class="main-content container">
@@ -15,8 +16,16 @@
         <p *ngIf="levelState.lastLevel">
             {{'label.greeting_game_done' | translate:null:{moveCount: levelState.moveCount} | async}}
         </p>
-        <button *ngIf="!levelState.lastLevel" class="button" (click)="nextLevel()">{{'action.nextlevel' | translate | async}}</button>
-        <button *ngIf="levelState.lastLevel" class="button" (click)="restartGame()">{{'action.try_game_again' | translate | async}}</button>
+        <button *ngIf="!levelState.lastLevel"
+                class="button"
+                (click)="nextLevel()"
+                [xnAnalytics]="{category: 'game-control', action: 'Next Level'}">
+                {{'action.nextlevel' | translate | async}}</button>
+        <button *ngIf="levelState.lastLevel"
+                class="button"
+                (click)="restartGame()"
+                [xnAnalytics]="{category: 'game-control', action: 'Try Again'}">
+                {{'action.nextlevel' | translate | async}}>{{'action.try_game_again' | translate | async}}</button>
     </xn-dialog>
 </ng-container>
 
@@ -39,6 +48,9 @@
             <div class="no-shrink tutorial-image grave">
             </div>
         </div>
-        <button class="button" (click)="acknowledgeTutorial()">{{'action.acknowledgetutorial' | translate | async}}</button>
+        <button class="button"
+                (click)="acknowledgeTutorial()"
+                [xnAnalytics]="{category: 'game-control', action: 'Tutorial done'}">
+                {{'action.acknowledgetutorial' | translate | async}}</button>
     </xn-dialog>
 </ng-container>

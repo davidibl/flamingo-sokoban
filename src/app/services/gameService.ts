@@ -14,7 +14,7 @@ import { Command } from '../model/command';
 @Injectable()
 export class GameService {
 
-    private static readonly LEVEL_COUNT = 5;
+    private static readonly LEVEL_COUNT = 12;
     private static readonly START_STATE = new LevelState(0, false);
 
     private _gameCache: { [key: number]: ReplaySubject<Field[][]> } = {};
@@ -154,6 +154,8 @@ export class GameService {
                 return Fieldtype.CONTRACT;
             case 'x':
                 return Fieldtype.WALL;
+            case 'n':
+                return Fieldtype.GRAVE_DONE;
             default:
                 return Fieldtype.EMPTY;
         }

@@ -20,6 +20,7 @@ import { StartupService } from './services/startupService';
 import { ConfigurationService } from './services/configurationService';
 import { LanguageService } from './services/languageService';
 import { TranslationService } from './services/translationService';
+import { ALL_DIRECTIVES } from './directives/directives';
 
 @Injectable()
 export class MyHammerConfig extends HammerGestureConfig {
@@ -40,7 +41,7 @@ export function startupServiceFactory(startupService: StartupService): Function 
 
 @NgModule({
     bootstrap: [AppComponent],
-    declarations: [AppComponent, ...ALL_COMPONENTS, ...ALL_PIPES],
+    declarations: [AppComponent, ...ALL_COMPONENTS, ...ALL_PIPES, ...ALL_DIRECTIVES],
     imports: [
         BrowserModule,
         HttpClientModule,
