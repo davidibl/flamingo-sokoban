@@ -14,7 +14,7 @@ import { LevelState } from '../../model/levelState';
 })
 export class GameboardComponent implements OnInit, AfterViewInit {
 
-    @ViewChild(TimerComponent)
+    @ViewChild(TimerComponent, { static: false })
     private _timer: TimerComponent;
 
     public gameboard$: Observable<Field[][]>;
