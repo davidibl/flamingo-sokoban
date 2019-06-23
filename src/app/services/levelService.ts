@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { Observable, ReplaySubject } from 'rxjs';
+import { map, tap, take } from 'rxjs/operators';
 import { StateService } from './stateService';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/take';
 
 @Injectable()
 export class LevelService {
@@ -15,13 +12,15 @@ export class LevelService {
     public constructor(private _stateService: StateService) {
         this._stateService
             .getStoredData('level')
-            .map(storedLevel => !!storedLevel ? storedLevel : LevelService.STARTLEVEL)
+            .pipe(
+                map(storedLevel => !!storedLevel ? storedLevel : LevelService.STARTLEVEL)
+            )
             .subscribe(level => this._levelSubject.next(level));
         this._stateService.addStateEvent('level', this._levelSubject.asObservable());
     }
 
     public get currentLevel(): Observable<number> {
-        return this._levelSubject;
+        return this._levelSubject.asObservable();
     }
 
     public setLevel(level: number) {
@@ -30,8 +29,10 @@ export class LevelService {
 
     public nextLevel() {
         this._levelSubject
-            .map(level => ++level)
-            .take(1)
+            .pipe(
+                map(level => ++level),
+                take(1)
+            )
             .subscribe(level => this._levelSubject.next(level));
     }
 }

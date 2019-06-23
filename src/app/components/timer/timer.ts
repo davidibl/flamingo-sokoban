@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/Observable/timer';
+import { timer, Subscription } from 'rxjs';
 
 @Component({
     selector: 'xn-timer',
@@ -14,7 +12,7 @@ export class TimerComponent {
 
     public startTimer() {
         if (this.currentTimer) { return; }
-        this.currentTimer = Observable.timer(0, 1000)
+        this.currentTimer = timer(0, 1000)
             .subscribe(t => this.currentTime = t);
     }
 

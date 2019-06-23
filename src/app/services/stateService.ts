@@ -1,6 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/Observable/of';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class StateService {
@@ -8,7 +7,7 @@ export class StateService {
     public constructor(@Inject('LOCALSTORAGE') private _localStorage: any) {}
 
     public getStoredData(key: string): Observable<number> {
-        return Observable.of(this._localStorage[key]);
+        return of(this._localStorage[key]);
     }
 
     public addStateEvent(key: string, event: Observable<any>) {

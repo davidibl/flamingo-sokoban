@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslationService } from './translationService';
 import { ConfigurationService } from './configurationService';
 import { LanguageService } from './languageService';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/Observable/of';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class StartupService {
@@ -16,6 +15,6 @@ export class StartupService {
         this._configurationService.addConfiguration(configuration);
         this._languageService.initLanguage();
         this._translationService.initStartupTranslation();
-        return Observable.of(1).toPromise();
+        return of(1).toPromise();
     }
 }

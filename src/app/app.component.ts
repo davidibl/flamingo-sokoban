@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LevelState } from './model/levelState';
 import { LevelService } from './services/levelService';
 import { GameService } from './services/gameService';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { StateService } from './services/stateService';
 import { AnalyticsService } from './services/analyticsService';
 import { Router, NavigationEnd } from '@angular/router';
@@ -60,8 +61,9 @@ export class AppComponent implements OnInit {
     private getLocalProfile() {
         this.localProfile$ = this._stateService
             .getStoredData('firstTime')
-            .map(firsttime => {
-                return {firstTime: !!firsttime}; });
+            .pipe(
+                map(firsttime => { return {firstTime: !!firsttime}; })
+            );
     }
 
 }

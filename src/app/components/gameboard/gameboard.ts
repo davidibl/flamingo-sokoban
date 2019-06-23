@@ -1,10 +1,10 @@
 import { Component, OnInit, AfterViewInit, HostListener, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { switchMap, tap, take } from 'rxjs/operators';
 import { TimerComponent } from '../timer/timer';
 import { Field } from '../../model/field';
 import { GameService } from '../../services/gameService';
 import { LevelService } from '../../services/levelService';
-import 'rxjs/add/operator/switchMap';
 import { LevelState } from '../../model/levelState';
 
 @Component({
@@ -35,13 +35,13 @@ export class GameboardComponent implements OnInit, AfterViewInit {
     public ngOnInit(): void {
         this.level$ = this._levelService.currentLevel;
         this.gameboard$ = this.level$
-            .switchMap(level => this._gameService.getLevel(level));
+            .pipe(switchMap(level => this._gameService.getLevel(level)));
 
         this.levelState$ = this._gameService.levelState;
     }
 
     public ngAfterViewInit() {
-        this.level$.do(level => this._timer.stopAndResetTimer()).subscribe();
+        this.level$.pipe(tap(level => this._timer.stopAndResetTimer())).subscribe();
     }
 
     public nextLevel() {
@@ -50,7 +50,7 @@ export class GameboardComponent implements OnInit, AfterViewInit {
 
     public restartLevel() {
         this.level$
-            .take(1)
+            .pipe(take(1))
             .subscribe(current => this._levelService.setLevel(current));
     }
 

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { ReplaySubject, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { LanguageService } from './languageService';
-import { ConfigurationService } from './configurationService';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/Observable/zip';
 
 const REGEX_TOKEN = /{(.+?)}/g;
 
@@ -20,17 +18,21 @@ export class TranslationService {
     public initStartupTranslation() {
         this._languageService
             .getCurrentLanguage()
-            .switchMap(language => this.queryCurrentTranslations(language))
+            .pipe(
+                switchMap(language => this.queryCurrentTranslations(language))
+            )
             .subscribe(translations => this.setupTranslations(translations));
     }
 
     public translateDefault(key: string, defaultValue?: string, tokens?: Object): Observable<string> {
         return this._registeredTranslationsSubject
             .asObservable()
-            .map(trans => {
-                return trans[key] ? trans[key] : defaultValue;
-            })
-            .map(trans => this.replaceTokens(trans, tokens));
+            .pipe(
+                map(trans => {
+                    return trans[key] ? trans[key] : defaultValue;
+                }),
+                map(trans => this.replaceTokens(trans, tokens))
+            );
     }
 
     private setupTranslations(translationObject: Object) {

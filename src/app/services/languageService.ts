@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ConfigurationService } from './configurationService';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import { Observable } from 'rxjs/Observable';
+import { Observable, ReplaySubject } from 'rxjs';
 
 @Injectable()
 export class LanguageService {
