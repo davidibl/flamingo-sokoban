@@ -1,17 +1,25 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "downlevelIteration": true,
+    "importHelpers": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es2015",
     "paths": {
-        "@angular/*": ["../node_modules/@angular/*"],
-        "@xnoname/*": ["../web-common/src/*"],
-        "rxjs/*": ["../node_modules/rxjs/*"]
+      "@angular/*": [
+        "../node_modules/@angular/*"
+      ],
+      "@xnoname/*": [
+        "../web-common/src/*"
+      ],
+      "rxjs/*": [
+        "../node_modules/rxjs/*"
+      ]
     },
     "typeRoots": [
       "node_modules/@types"
@@ -19,7 +27,8 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "module": "esnext",
+    "baseUrl": "./"
   }
-
 }
