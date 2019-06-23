@@ -14,9 +14,6 @@
       "@angular/*": [
         "../node_modules/@angular/*"
       ],
-      "@xnoname/*": [
-        "../web-common/src/*"
-      ],
       "rxjs/*": [
         "../node_modules/rxjs/*"
       ]
